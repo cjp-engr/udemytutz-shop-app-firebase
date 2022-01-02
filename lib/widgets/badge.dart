@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class Badge extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
   const Badge({
-    required this.child,
-    required this.value,
+    @required this.child,
+    @required this.value,
     this.color = Colors.black45,
   });
 

@@ -75,7 +75,7 @@ class Products with ChangeNotifier {
       imageUrl: product.imageUrl,
     );
     _items.add(newProduct);
-    _items.insert(0, newProduct);
+    //_items.insert(0, newProduct);
     notifyListeners();
   }
 
@@ -88,5 +88,10 @@ class Products with ChangeNotifier {
       // ignore: avoid_print
       print('...');
     }
+  }
+
+  void deleteProduct(String id) {
+    _items.removeWhere((prod) => prod.id == id);
+    notifyListeners();
   }
 }

@@ -45,10 +45,16 @@ class _EditProductScreenState extends State<EditProductScreen> {
   @override
   void didChangeDependencies() {
     if (_isInit) {
-      final productId = ModalRoute.of(context)!.settings.arguments as String;
-      if (productId != '') {
-        _editedProduct =
-            Provider.of<Products>(context, listen: false).findById(productId);
+      //TODO: displays 'type 'Null' is not a subtype of type 'String' in type cast'
+
+      // ignore: prefer_const_declarations, unused_local_variable
+      //final productId = '';
+      //final productId = ModalRoute.of(context).settings.arguments as String;
+      //change the sdk: to ">=2.10.0 <3.0.0" from ">=2.12.0 <3.0.0"
+
+      if (ModalRoute.of(context).settings.arguments as String != null) {
+        _editedProduct = Provider.of<Products>(context, listen: false)
+            .findById(ModalRoute.of(context).settings.arguments as String);
         _initValues = {
           'title': _editedProduct.title,
           'description': _editedProduct.description,
@@ -86,11 +92,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   void _saveForm() {
-    final isValid = _form.currentState!.validate();
+    final isValid = _form.currentState.validate();
     if (!isValid) {
       return;
     }
-    _form.currentState!.save();
+    _form.currentState.save();
     if (_editedProduct.id != '') {
       Provider.of<Products>(context, listen: false)
           .updateProduct(_editedProduct.id, _editedProduct);
@@ -128,14 +134,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     FocusScope.of(context).requestFocus(_priceFocusNode);
                   },
                   validator: (value) {
-                    if (value!.isEmpty) {
+                    if (value.isEmpty) {
                       return 'Please provide a value';
                     }
                     return null;
                   },
                   onSaved: (value) {
                     _editedProduct = Product(
-                      title: value as String,
+                      title: value,
                       description: _editedProduct.description,
                       price: _editedProduct.price,
                       imageUrl: _editedProduct.imageUrl,
@@ -154,7 +160,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     FocusScope.of(context).requestFocus(_descriptionFocusNode);
                   },
                   validator: (value) {
-                    if (value!.isEmpty) {
+                    if (value.isEmpty) {
                       return 'Please enter a price';
                     }
                     if (double.tryParse(value) == null) {
@@ -183,7 +189,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   keyboardType: TextInputType.multiline,
                   focusNode: _descriptionFocusNode,
                   validator: (value) {
-                    if (value!.isEmpty) {
+                    if (value.isEmpty) {
                       return 'Please enter a description';
                     }
                     if (value.length < 10) {
@@ -239,7 +245,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           _saveForm();
                         },
                         validator: (value) {
-                          if (value!.isEmpty) {
+                          if (value.isEmpty) {
                             return 'Please enter an image URL.';
                           }
                           if (!value.startsWith('http') &&
