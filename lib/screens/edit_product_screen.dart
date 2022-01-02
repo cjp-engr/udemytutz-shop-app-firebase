@@ -175,7 +175,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     _editedProduct = Product(
                       title: _editedProduct.title,
                       description: _editedProduct.description,
-                      price: double.parse(value as String),
+                      price: double.parse(value),
                       imageUrl: _editedProduct.imageUrl,
                       id: _editedProduct.id,
                       isFavorite: _editedProduct.isFavorite,
@@ -200,7 +200,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   onSaved: (value) {
                     _editedProduct = Product(
                       title: _editedProduct.title,
-                      description: value as String,
+                      description: value,
                       price: _editedProduct.price,
                       imageUrl: _editedProduct.imageUrl,
                       id: _editedProduct.id,
@@ -267,7 +267,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                             title: _editedProduct.title,
                             description: _editedProduct.description,
                             price: _editedProduct.price,
-                            imageUrl: value as String,
+                            imageUrl: value,
                             id: _editedProduct.id,
                             isFavorite: _editedProduct.isFavorite,
                           );

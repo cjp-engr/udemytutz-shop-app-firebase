@@ -29,6 +29,7 @@ class Badge extends StatelessWidget {
               // ignore: deprecated_member_use, unnecessary_null_comparison, prefer_if_null_operators
               color: color != Colors.black45
                   ? color
+                  // ignore: deprecated_member_use
                   : Theme.of(context).accentColor,
             ),
             constraints: const BoxConstraints(
