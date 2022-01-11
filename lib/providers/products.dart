@@ -68,14 +68,14 @@ class Products with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  void addProduct(Product product) {
+  Future<void> addProduct(Product product) {
     //_items.add(value);
     // final url = Uri.https(
     //     'https://shop-app-firebase-b22e9-default-rtdb.firebaseio.com',
     //     '/products.json');
     final url = Uri.parse(
         'https://shop-app-firebase-b22e9-default-rtdb.firebaseio.com/products.json');
-    http
+    return http
         .post(url,
             body: json.encode({
               'title': product.title,
