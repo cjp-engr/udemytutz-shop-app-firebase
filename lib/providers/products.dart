@@ -68,6 +68,17 @@ class Products with ChangeNotifier {
   //   notifyListeners();
   // }
 
+  Future<void> fetchAndSetProducts() async {
+    final url = Uri.parse(
+        'https://shop-app-firebase-b22e9-default-rtdb.firebaseio.com/products.json');
+    try {
+      final response = await http.get(url);
+      final extractedData = json.decode(response.body);
+    } catch (error) {
+      rethrow;
+    }
+  }
+
   Future<void> addProduct(Product product) async {
     //_items.add(value);
     // final url = Uri.https(
